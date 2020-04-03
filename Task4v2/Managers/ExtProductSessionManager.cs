@@ -7,6 +7,8 @@ namespace Task4v2.Managers
 {
     public class ExtProductSessionManager
     {
+        private SessionManager sessionManager = new SessionManager();
+
 
     }
 }
