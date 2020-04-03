@@ -8,7 +8,7 @@ namespace Task4v2.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "This field is required"),
-        Range(1, int.MaxValue, ErrorMessage = "Please enter a value greater than {0}.")]
+        Range(1, int.MaxValue, ErrorMessage = "Please enter a value greater than 0")]
         public string Quantity { get; set; }
     }
 }
