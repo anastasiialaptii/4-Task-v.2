@@ -32,8 +32,8 @@ namespace Task4v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var sessionManager = new ProductSessionManager(HttpContext);
-                sessionManager.AddProductToList(product);
+                var sessionManager = new ProductSessionManager();
+                sessionManager.AddProductToList(product, HttpContext);
                 return RedirectToAction("SessionList");
             }
             else
@@ -44,8 +44,8 @@ namespace Task4v2.Controllers
 
         public ActionResult SessionList()
         {
-            var sessionManager = new ProductSessionManager(HttpContext);
-            return View(sessionManager.GetOrCreateProductList());
+            var sessionManager = new ProductSessionManager();
+            return View(sessionManager.GetOrCreateProductList(HttpContext));
         }
     }
 }
