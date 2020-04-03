@@ -1,14 +1,11 @@
 ﻿@model IEnumerable<Task4v2.Models.ExtProductModel>
 
 @{
-    ViewBag.Title = "ExtProductSessionList";
+    ViewBag.Title = "Product List";
 }
 
-<h2>ExtProductSessionList</h2>
+<h2>Product list</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -18,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model=>model.MassUnits)
+            @Html.DisplayNameFor(model => model.MassUnits)
         </th>
     </tr>
 
@@ -33,11 +30,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MassUnits)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
     }

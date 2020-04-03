@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Task4v2.Managers;
 using Task4v2.Models;
 
@@ -10,8 +6,7 @@ namespace Task4v2.Controllers
 {
     public class ExtProductController : Controller
     {
-        private ExtProductManager extProductManager = new ExtProductManager();
-        List<ExtProductModel> extProductModels = new List<ExtProductModel>();
+        private ExtProductSessionManager extProductSession = new ExtProductSessionManager();
 
         public ActionResult CreateExtProduct()
         {
@@ -23,7 +18,7 @@ namespace Task4v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                extProductModels.Add(extProduct);
+                extProductSession.AddProductToList(extProduct, HttpContext);
                 return RedirectToAction("ExtProductSessionList");
             }
             return View();
@@ -31,7 +26,7 @@ namespace Task4v2.Controllers
 
         public ActionResult ExtProductSessionList()
         {
-            return View(extProductModels);
+            return View(extProductSession.GetOrCreateExtProductList(HttpContext));
         }
     }
 }
