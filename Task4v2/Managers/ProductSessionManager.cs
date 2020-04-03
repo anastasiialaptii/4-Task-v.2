@@ -5,11 +5,11 @@ using Task4v2.Models;
 
 namespace Task4v2.Managers
 {
-    public class SessionManager
+    public class ProductSessionManager
     {
         private HttpContextBase Context { get; set; }
 
-        public SessionManager(HttpContextBase context)
+        public ProductSessionManager(HttpContextBase context)
         {
             Context = context;
         }
