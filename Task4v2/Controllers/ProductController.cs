@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Task4v2.Managers;
 using Task4v2.Models;
 
@@ -11,7 +8,7 @@ namespace Task4v2.Controllers
     {
         private ProductManager productManager = new ProductManager();
         private ProductDataManager productDataManager = new ProductDataManager();
-        private SessionManager sessionManager = new SessionManager();
+        private ProductSessionManager sessionManager = new ProductSessionManager();
 
         public ActionResult ProductListView()
         {
@@ -34,7 +31,7 @@ namespace Task4v2.Controllers
             if (ModelState.IsValid)
             {
                 sessionManager.AddProductToList(product, HttpContext);
-                return RedirectToAction("ProductSessionList");
+                return RedirectToAction("ProductList");
             }
             else
             {
@@ -42,7 +39,7 @@ namespace Task4v2.Controllers
             }
         }
 
-        public ActionResult ProductSessionList()
+        public ActionResult ProductList()
         {
             return View(sessionManager.GetOrCreateProductList(HttpContext));
         }

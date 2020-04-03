@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Task4v2.Models.ExtProductModel>
+
+@{
+    ViewBag.Title = "extProduct List";
+}
+
+<h2>ExtProduct List</h2>
+
+@foreach (var item in Model)
+{
+    <h4> @item.Name - @item.Quantity @item.MassUnits</h4>
+}
+
