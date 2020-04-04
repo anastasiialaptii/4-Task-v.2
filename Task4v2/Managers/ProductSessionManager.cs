@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using Task4v2.Models;
 
@@ -24,6 +25,14 @@ namespace Task4v2.Managers
         {
             var products = GetOrCreateProductList(httpContext);
             products.Add(product);
+            return products;
+        }
+
+        public List<ProductModel> DeleteProductFromList(string xx, HttpContextBase httpContext)
+        {
+            var products = GetOrCreateProductList(httpContext);
+            var query = products.Where(x => x.Name == xx).FirstOrDefault();
+            products.Remove(query); 
             return products;
         }
     }

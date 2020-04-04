@@ -200,10 +200,10 @@
     <Content Include="Views\Product\CreateProduct.cshtml" />
     <Content Include="Views\ExtProduct\CreateExtProduct.cshtml" />
     <Content Include="Views\ExtProduct\ExtProductList.cshtml" />
+    <Content Include="Views\TestProduct\ProductListView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\TestProduct\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
