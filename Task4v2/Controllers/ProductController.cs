@@ -27,9 +27,9 @@ namespace Task4v2.Controllers
             }
         }
 
-        public ActionResult DeleteProduct(string x)
+        public ActionResult DeleteProduct(string name, string quantity)
         {
-            sessionManager.DeleteProductFromList(x, HttpContext);
+            sessionManager.DeleteProductFromList(name, quantity, HttpContext);
             return RedirectToAction("ProductList");
         }
 

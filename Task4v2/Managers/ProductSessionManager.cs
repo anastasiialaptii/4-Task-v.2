@@ -10,7 +10,7 @@ namespace Task4v2.Managers
         private SessionManager sessionManager = new SessionManager();
 
         public List<ProductModel> GetOrCreateProductList(HttpContextBase httpContext)
-        {           
+        {
             var context = sessionManager.CreateHttpContext(httpContext);
             var products = context.HttpContext.Session["ProductList"] as List<ProductModel>;
             if (products == null)
@@ -28,11 +28,14 @@ namespace Task4v2.Managers
             return products;
         }
 
-        public List<ProductModel> DeleteProductFromList(string xx, HttpContextBase httpContext)
+        public List<ProductModel> DeleteProductFromList(string name, string quantity, HttpContextBase httpContext)
         {
             var products = GetOrCreateProductList(httpContext);
-            var query = products.Where(x => x.Name == xx).FirstOrDefault();
-            products.Remove(query); 
+            var query = products
+                .Where(x => x.Name == name)
+                .Where(x => x.Quantity == quantity)
+                .FirstOrDefault();
+            products.Remove(query);
             return products;
         }
     }
