@@ -18,7 +18,7 @@ namespace Task4v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                extProductSession.AddProductToList(extProduct, HttpContext);
+                extProductSession.AddExtProduct(extProduct, HttpContext);
                 return RedirectToAction("ExtProductList");
             }
             return View();

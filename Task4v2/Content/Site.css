@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.col-lg-4 col-md-4 {
+    display: inline-block;
+} 

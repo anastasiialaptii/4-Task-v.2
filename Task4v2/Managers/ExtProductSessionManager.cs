@@ -21,7 +21,7 @@ namespace Task4v2.Managers
             return products;
         }
 
-        public List<ExtProductModel> AddProductToList(ExtProductModel extProduct, HttpContextBase context)
+        public List<ExtProductModel> AddExtProduct(ExtProductModel extProduct, HttpContextBase context)
         {
             var extnProducts = GetOrCreateExtProductList(context);
             extProduct.Id = extnProducts.Count > 0 ? extnProducts.Max(x => x.Id) + 1 : 1; 

@@ -147,14 +147,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ExtProductController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
-    <Compile Include="Controllers\TestProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Managers\ExtProductManager.cs" />
     <Compile Include="Managers\ExtProductSessionManager.cs" />
-    <Compile Include="Managers\ProductDataManager.cs" />
-    <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Managers\ProductSessionManager.cs" />
     <Compile Include="Managers\SessionManager.cs" />
     <Compile Include="Models\MassUnitsModel.cs" />
