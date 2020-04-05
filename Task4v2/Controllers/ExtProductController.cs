@@ -29,7 +29,7 @@ namespace Task4v2.Controllers
             return View(extProductSession.GetOrCreateExtProductList(HttpContext));
         }
 
-        public ActionResult ExtProductDetails(int id)
+        public ActionResult DetailsExtProduct(int id)
         {
             return View(extProductSession.DetailsExtProduct(id, HttpContext));
         }
@@ -39,6 +39,7 @@ namespace Task4v2.Controllers
             return View(extProductSession.DetailsExtProduct(id, HttpContext));
         }
 
+        [HttpPost]
         public ActionResult EditExtProduct(ExtProductModel extProduct)
         {
             if (ModelState.IsValid)
