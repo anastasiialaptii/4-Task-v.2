@@ -24,26 +24,25 @@ namespace Task4v2.Managers
         public List<ProductModel> AddProduct(ProductModel product, HttpContextBase httpContext)
         {
             var products = GetOrCreateProductList(httpContext);
+            product.Id = products.Count > 0 ? products.Max(x => x.Id) + 1 : 1;
             products.Add(product);
             return products;
         }
 
-        public List<ProductModel> DeleteProduct(string name, string quantity, HttpContextBase httpContext)
+        public List<ProductModel> DeleteProduct(ProductModel product, HttpContextBase httpContext)
         {
             var products = GetOrCreateProductList(httpContext);
             var queryDelete = products
-                .Where(x => x.Name == name)
-                .Where(x => x.Quantity == quantity)
+                .Where(x => x.Id == product.Id)
                 .FirstOrDefault();
             products.Remove(queryDelete);
             return products;
         }
 
-        public ProductModel DetailsProduct(string name, string quantity, HttpContextBase httpContext)
+        public ProductModel DetailsProduct(int id, HttpContextBase httpContext)
         {
             var products = GetOrCreateProductList(httpContext)
-                .Where(x => x.Name == name)
-                .Where(x => x.Quantity == quantity)
+                .Where(x => x.Id == id)
                 .FirstOrDefault();
             return products;
         }
@@ -51,8 +50,9 @@ namespace Task4v2.Managers
         public ProductModel EditProduct(ProductModel product, HttpContextBase httpContext)
         {
             var products = GetOrCreateProductList(httpContext)
-                .Where(x => x.Name == product.Name)
+                .Where(x => x.Id == product.Id)
                 .FirstOrDefault();
+            products.Name = product.Name;
             products.Quantity = product.Quantity;
             return products;
         }

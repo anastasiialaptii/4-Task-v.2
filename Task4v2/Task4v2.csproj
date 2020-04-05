@@ -202,6 +202,7 @@
     <Content Include="Views\ExtProduct\ExtProductList.cshtml" />
     <Content Include="Views\TestProduct\ProductListView.cshtml" />
     <Content Include="Views\Product\EditProduct.cshtml" />
+    <Content Include="Views\Product\DetailsProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

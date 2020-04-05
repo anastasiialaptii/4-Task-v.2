@@ -27,16 +27,15 @@ namespace Task4v2.Controllers
             }
         }
 
-        public ActionResult DeleteProduct(string name, string quantity)
+        public ActionResult DeleteProduct(ProductModel product)
         {
-            sessionManager.DeleteProduct(name, quantity, HttpContext);
+            sessionManager.DeleteProduct(product, HttpContext);
             return RedirectToAction("ProductList");
         }
 
-        public ActionResult EditProduct(string name, string quantity)
+        public ActionResult EditProduct(int id)
         {
-            var res = sessionManager.DetailsProduct(name, quantity, HttpContext);
-            return View(res);
+            return View(sessionManager.DetailsProduct(id, HttpContext));
         }
 
         [HttpPost]
@@ -48,6 +47,11 @@ namespace Task4v2.Controllers
                 return RedirectToAction("ProductList");
             }
             return View();
+        }
+
+        public ActionResult DetailsProduct(int id)
+        {
+            return View(sessionManager.DetailsProduct(id, HttpContext));
         }
 
         public ActionResult ProductList()
