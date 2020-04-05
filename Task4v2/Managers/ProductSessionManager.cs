@@ -21,21 +21,39 @@ namespace Task4v2.Managers
             return products;
         }
 
-        public List<ProductModel> AddProductToList(ProductModel product, HttpContextBase httpContext)
+        public List<ProductModel> AddProduct(ProductModel product, HttpContextBase httpContext)
         {
             var products = GetOrCreateProductList(httpContext);
             products.Add(product);
             return products;
         }
 
-        public List<ProductModel> DeleteProductFromList(string name, string quantity, HttpContextBase httpContext)
+        public List<ProductModel> DeleteProduct(string name, string quantity, HttpContextBase httpContext)
         {
             var products = GetOrCreateProductList(httpContext);
-            var query = products
+            var queryDelete = products
                 .Where(x => x.Name == name)
                 .Where(x => x.Quantity == quantity)
                 .FirstOrDefault();
-            products.Remove(query);
+            products.Remove(queryDelete);
+            return products;
+        }
+
+        public ProductModel DetailsProduct(string name, string quantity, HttpContextBase httpContext)
+        {
+            var products = GetOrCreateProductList(httpContext)
+                .Where(x => x.Name == name)
+                .Where(x => x.Quantity == quantity)
+                .FirstOrDefault();
+            return products;
+        }
+
+        public ProductModel EditProduct(ProductModel product, HttpContextBase httpContext)
+        {
+            var products = GetOrCreateProductList(httpContext)
+                .Where(x => x.Name == product.Name)
+                .FirstOrDefault();
+            products.Quantity = product.Quantity;
             return products;
         }
     }

@@ -3,18 +3,19 @@
     ViewData["Title"] = "Product List";
 }
 
-<h1>Product List</h1>
-
 @foreach (var item in Model)
 {
     <div class="col-lg-4 col-md-4">
         <h4>@item.Name - @item.Quantity</h4>
         @Html.ActionLink("Delete", "DeleteProduct",
-            new { name = item.Name, quantity = item.Quantity },
-            new
-                 {
-                     onclick = "return confirm('Are you sure you want to delete this user?');",
-                     @class = "delete-button"
-                 })
+          new { name = item.Name, quantity = item.Quantity },
+          new
+          {
+              onclick = "return confirm('Are you sure you want to delete this user?');",
+              @class = "delete-button"
+          });
+        @Html.ActionLink("Edit", "EditProduct",
+           new { name = item.Name, quantity = item.Quantity });
     </div>
+
 }
