@@ -23,6 +23,14 @@ textarea {
     max-width: 280px;
 }
 
-.col-lg-4 col-md-4 {
+.col-lg-4,
+.col-md-4,
+.col-md-10 {
     display: inline-block;
 } 
+.product-list{
+    display:flex;
+}
+.product-list-item{
+    flex-shrink:1;
+}

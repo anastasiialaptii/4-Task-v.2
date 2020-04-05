@@ -28,5 +28,31 @@ namespace Task4v2.Controllers
         {
             return View(extProductSession.GetOrCreateExtProductList(HttpContext));
         }
+
+        public ActionResult ExtProductDetails(int id)
+        {
+            return View(extProductSession.DetailsExtProduct(id, HttpContext));
+        }
+
+        public ActionResult EditExtProduct(int id)
+        {           
+            return View(extProductSession.DetailsExtProduct(id, HttpContext));
+        }
+
+        public ActionResult EditExtProduct(ExtProductModel extProduct)
+        {
+            if (ModelState.IsValid)
+            {
+                extProductSession.EditExtProduct(extProduct, HttpContext);
+                return RedirectToAction("ExtProductList");
+            }
+            return View();
+        }
+
+        public ActionResult DeleteExtProduct(ExtProductModel extProduct)
+        {
+            extProductSession.DeleteExtProduct(extProduct, HttpContext);
+            return RedirectToAction("ExtProductList");
+        }
     }
 }
