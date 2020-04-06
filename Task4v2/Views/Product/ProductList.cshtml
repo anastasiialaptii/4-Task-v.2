@@ -17,11 +17,11 @@
             <td>@item.Name</td>
             <td>
                 @Html.ActionLink("Delete", "DeleteProduct",
-                        new { id = item.Id },
-                        new
-                        {
-                            onclick = "return confirm('Are you sure you want to delete this one?');",
-                        })
+             new { id = item.Id },
+             new
+             {
+                 onclick = "return confirm('Are you sure you want to delete this one?');"
+             })
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditProduct",

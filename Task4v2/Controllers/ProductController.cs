@@ -6,8 +6,6 @@ namespace Task4v2.Controllers
 {
     public class ProductController : Controller
     {
-        private ProductSessionManager sessionManager = new ProductSessionManager();
-
         public ActionResult CreateProduct()
         {
             return View();
@@ -18,7 +16,8 @@ namespace Task4v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                sessionManager.AddProduct(product, HttpContext);
+                var session = new ProductSessionManager(HttpContext);
+                session.AddProduct(product);
                 return RedirectToAction(nameof(ProductList));
             }
             else
@@ -29,17 +28,30 @@ namespace Task4v2.Controllers
 
         public ActionResult ProductList()
         {
-            return View(sessionManager.GetOrCreateProductList(HttpContext));
+            var session = new ProductSessionManager(HttpContext);
+            return View(session.GetOrCreateProductList());
         }
 
-        public ActionResult DetailsProduct(int id)
+        public ActionResult DetailsProduct(int? id)
         {
-            return View(sessionManager.DetailsProduct(id, HttpContext));
+            if (id != null)
+            {
+                var session = new ProductSessionManager(HttpContext);
+                return View(session.DetailsProduct(id));
+
+            }
+            return RedirectToAction(nameof(ProductList));
         }
 
-        public ActionResult EditProduct(int id)
+        public ActionResult EditProduct(int? id)
         {
-            return View(sessionManager.DetailsProduct(id, HttpContext));
+            if (id != null)
+            {
+                var session = new ProductSessionManager(HttpContext);
+                return View(session.DetailsProduct(id));
+
+            }
+            return RedirectToAction(nameof(ProductList));
         }
 
         [HttpPost]
@@ -47,7 +59,8 @@ namespace Task4v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                sessionManager.EditProduct(product, HttpContext);
+                var session = new ProductSessionManager(HttpContext);
+                session.EditProduct(product);
                 return RedirectToAction(nameof(ProductList));
             }
             return View(product);
@@ -55,7 +68,8 @@ namespace Task4v2.Controllers
 
         public ActionResult DeleteProduct(ProductModel product)
         {
-            sessionManager.DeleteProduct(product, HttpContext);
+            var session = new ProductSessionManager(HttpContext);
+            session.DeleteProduct(product);
             return RedirectToAction(nameof(ProductList));
         }
     }

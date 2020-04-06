@@ -153,11 +153,9 @@
     </Compile>
     <Compile Include="Managers\ExtProductSessionManager.cs" />
     <Compile Include="Managers\ProductSessionManager.cs" />
-    <Compile Include="Managers\SessionManager.cs" />
     <Compile Include="Models\MassUnitsModel.cs" />
     <Compile Include="Models\ExtProductModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
-    <Compile Include="Models\SessionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

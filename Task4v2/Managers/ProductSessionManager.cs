@@ -7,39 +7,43 @@ namespace Task4v2.Managers
 {
     public class ProductSessionManager
     {
-        private SessionManager sessionManager = new SessionManager();
+        private HttpContextBase HttpContext { get; set; }
 
-        public List<ProductModel> GetOrCreateProductList(HttpContextBase httpContext)
+        public ProductSessionManager(HttpContextBase httpContext)
         {
-            var context = sessionManager.CreateHttpContext(httpContext);
-            var products = context.HttpContext.Session["ProductList"] as List<ProductModel>;
+            HttpContext = httpContext;
+        }
+
+        public List<ProductModel> GetOrCreateProductList()
+        {
+            var products = HttpContext.Session["ProductList"] as List<ProductModel>;
             if (products == null)
             {
                 products = new List<ProductModel>();
             }
-            context.HttpContext.Session["ProductList"] = products;
+            HttpContext.Session["ProductList"] = products;
             return products;
         }
 
-        public List<ProductModel> AddProduct(ProductModel product, HttpContextBase httpContext)
+        public List<ProductModel> AddProduct(ProductModel product)
         {
-            var products = GetOrCreateProductList(httpContext);
+            var products = GetOrCreateProductList();
             product.Id = products.Count > 0 ? products.Max(x => x.Id) + 1 : 1;
             products.Add(product);
             return products;
         }
 
-        public ProductModel DetailsProduct(int id, HttpContextBase httpContext)
+        public ProductModel DetailsProduct(int? id)
         {
-            var products = GetOrCreateProductList(httpContext)
+            var products = GetOrCreateProductList()
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
             return products;
         }
 
-        public ProductModel EditProduct(ProductModel product, HttpContextBase httpContext)
+        public ProductModel EditProduct(ProductModel product)
         {
-            var editProduct = GetOrCreateProductList(httpContext)
+            var editProduct = GetOrCreateProductList()
                 .Where(x => x.Id == product.Id)
                 .FirstOrDefault();
             editProduct.Name = product.Name;
@@ -47,9 +51,9 @@ namespace Task4v2.Managers
             return editProduct;
         }
 
-        public List<ProductModel> DeleteProduct(ProductModel product, HttpContextBase httpContext)
+        public List<ProductModel> DeleteProduct(ProductModel product)
         {
-            var products = GetOrCreateProductList(httpContext);
+            var products = GetOrCreateProductList();
             var queryDelete = products
                 .Where(x => x.Id == product.Id)
                 .FirstOrDefault();

@@ -6,8 +6,6 @@ namespace Task4v2.Controllers
 {
     public class ExtProductController : Controller
     {
-        private ExtProductSessionManager sessionManager = new ExtProductSessionManager();
-
         public ActionResult CreateExtProduct()
         {
             return View();
@@ -18,7 +16,8 @@ namespace Task4v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                sessionManager.AddExtProduct(extProduct, HttpContext);
+                var session = new ExtProductSessionManager(HttpContext);
+                session.AddExtProduct(extProduct);
                 return RedirectToAction(nameof(ExtProductList));
             }
             return View(extProduct);
@@ -26,17 +25,20 @@ namespace Task4v2.Controllers
 
         public ActionResult ExtProductList()
         {
-            return View(sessionManager.GetOrCreateExtProductList(HttpContext));
+            var session = new ExtProductSessionManager(HttpContext);
+            return View(session.GetOrCreateExtProductList());
         }
 
         public ActionResult DetailsExtProduct(int id)
         {
-            return View(sessionManager.DetailsExtProduct(id, HttpContext));
+            var session = new ExtProductSessionManager(HttpContext);
+            return View(session.DetailsExtProduct(id));
         }
 
         public ActionResult EditExtProduct(int id)
         {
-            return View(sessionManager.DetailsExtProduct(id, HttpContext));
+            var session = new ExtProductSessionManager(HttpContext);
+            return View(session.DetailsExtProduct(id));
         }
 
         [HttpPost]
@@ -44,7 +46,8 @@ namespace Task4v2.Controllers
         {
             if (ModelState.IsValid)
             {
-                sessionManager.EditExtProduct(extProduct, HttpContext);
+                var session = new ExtProductSessionManager(HttpContext);
+                session.EditExtProduct(extProduct);
                 return RedirectToAction(nameof(ExtProductList));
             }
             return View(extProduct);
@@ -52,7 +55,8 @@ namespace Task4v2.Controllers
 
         public ActionResult DeleteExtProduct(ExtProductModel extProduct)
         {
-            sessionManager.DeleteExtProduct(extProduct, HttpContext);
+            var session = new ExtProductSessionManager(HttpContext);
+            session.DeleteExtProduct(extProduct);
             return RedirectToAction(nameof(ExtProductList));
         }
     }

@@ -7,39 +7,43 @@ namespace Task4v2.Managers
 {
     public class ExtProductSessionManager
     {
-        private SessionManager sessionManager = new SessionManager();
+        private HttpContextBase HttpContext { get; set; }
 
-        public List<ExtProductModel> GetOrCreateExtProductList(HttpContextBase httpContext)
+        public ExtProductSessionManager(HttpContextBase httpContext)
         {
-            var context = sessionManager.CreateHttpContext(httpContext);
-            var products = context.HttpContext.Session["ExtProductList"] as List<ExtProductModel>;
+            HttpContext = httpContext;
+        }
+
+        public List<ExtProductModel> GetOrCreateExtProductList()
+        {
+            var products = HttpContext.Session["ExtProductList"] as List<ExtProductModel>;
             if (products == null)
             {
                 products = new List<ExtProductModel>();
             }
-            context.HttpContext.Session["ExtProductList"] = products;
+            HttpContext.Session["ExtProductList"] = products;
             return products;
         }
 
-        public List<ExtProductModel> AddExtProduct(ExtProductModel extProduct, HttpContextBase httpContext)
+        public List<ExtProductModel> AddExtProduct(ExtProductModel extProduct)
         {
-            var extnProducts = GetOrCreateExtProductList(httpContext);
+            var extnProducts = GetOrCreateExtProductList();
             extProduct.Id = extnProducts.Count > 0 ? extnProducts.Max(x => x.Id) + 1 : 1;
             extnProducts.Add(extProduct);
             return extnProducts;
         }
 
-        public ExtProductModel DetailsExtProduct(int id, HttpContextBase httpContext)
+        public ExtProductModel DetailsExtProduct(int id)
         {
-            var detailsExtProduct = GetOrCreateExtProductList(httpContext)
+            var detailsExtProduct = GetOrCreateExtProductList()
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
             return detailsExtProduct;
         }
 
-        public ExtProductModel EditExtProduct(ExtProductModel extProduct, HttpContextBase httpContext)
+        public ExtProductModel EditExtProduct(ExtProductModel extProduct)
         {
-            var editExtProduct = GetOrCreateExtProductList(httpContext)
+            var editExtProduct = GetOrCreateExtProductList()
                 .Where(x => x.Id == extProduct.Id)
                 .FirstOrDefault();
             editExtProduct.Name = extProduct.Name;
@@ -48,9 +52,9 @@ namespace Task4v2.Managers
             return editExtProduct;
         }
 
-        public List<ExtProductModel> DeleteExtProduct(ExtProductModel extProduct, HttpContextBase httpContext)
+        public List<ExtProductModel> DeleteExtProduct(ExtProductModel extProduct)
         {
-            var extProducts = GetOrCreateExtProductList(httpContext);
+            var extProducts = GetOrCreateExtProductList();
             var queryDelete = extProducts
                 .Where(x => x.Id == extProduct.Id)
                 .FirstOrDefault();
