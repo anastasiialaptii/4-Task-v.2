@@ -29,7 +29,12 @@ namespace Task4v2.Controllers
 
         public ActionResult ProductList()
         {
-            return View(sessionManager.GetOrCreateProductList(HttpContext));
+            var products = sessionManager.GetOrCreateProductList(HttpContext);
+            if (products.Count == 0)
+            {
+                return View("EmptyList");
+            }
+            return View(products);
         }
 
         public ActionResult DetailsProduct(int id)
