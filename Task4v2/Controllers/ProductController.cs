@@ -23,18 +23,13 @@ namespace Task4v2.Controllers
             }
             else
             {
-                return View();
+                return View(product);
             }
         }
 
         public ActionResult ProductList()
         {
-            var products = sessionManager.GetOrCreateProductList(HttpContext);
-            if (products.Count == 0)
-            {
-                return View("EmptyList");
-            }
-            return View(products);
+            return View(sessionManager.GetOrCreateProductList(HttpContext));
         }
 
         public ActionResult DetailsProduct(int id)

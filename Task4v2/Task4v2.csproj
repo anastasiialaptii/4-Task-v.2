@@ -150,7 +150,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Managers\ExtProductManager.cs" />
     <Compile Include="Managers\ExtProductSessionManager.cs" />
     <Compile Include="Managers\ProductSessionManager.cs" />
     <Compile Include="Managers\SessionManager.cs" />
@@ -165,7 +164,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\magnific-popup.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -173,7 +171,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\btn-del.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -205,8 +202,6 @@
     <Content Include="Views\Product\DetailsProduct.cshtml" />
     <Content Include="Views\ExtProduct\DetailsExtProduct.cshtml" />
     <Content Include="Views\ExtProduct\EditExtProduct.cshtml" />
-    <Content Include="Views\Product\EmptyList.cshtml" />
-    <Content Include="Views\ExtProduct\EmptyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
