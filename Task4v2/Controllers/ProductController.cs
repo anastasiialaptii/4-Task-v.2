@@ -19,7 +19,7 @@ namespace Task4v2.Controllers
             if (ModelState.IsValid)
             {
                 sessionManager.AddProduct(product, HttpContext);
-                return RedirectToAction("ProductList");
+                return RedirectToAction(nameof(ProductList));
             }
             else
             {
@@ -48,15 +48,15 @@ namespace Task4v2.Controllers
             if (ModelState.IsValid)
             {
                 sessionManager.EditProduct(product, HttpContext);
-                return RedirectToAction("ProductList");
+                return RedirectToAction(nameof(ProductList));
             }
-            return View();
+            return View(product);
         }
 
         public ActionResult DeleteProduct(ProductModel product)
         {
             sessionManager.DeleteProduct(product, HttpContext);
-            return RedirectToAction("ProductList");
+            return RedirectToAction(nameof(ProductList));
         }
     }
 }

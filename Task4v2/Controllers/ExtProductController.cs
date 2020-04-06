@@ -19,7 +19,7 @@ namespace Task4v2.Controllers
             if (ModelState.IsValid)
             {
                 sessionManager.AddExtProduct(extProduct, HttpContext);
-                return RedirectToAction("ExtProductList");
+                return RedirectToAction(nameof(ExtProductList));
             }
             return View(extProduct);
         }
@@ -45,15 +45,15 @@ namespace Task4v2.Controllers
             if (ModelState.IsValid)
             {
                 sessionManager.EditExtProduct(extProduct, HttpContext);
-                return RedirectToAction("ExtProductList");
+                return RedirectToAction(nameof(ExtProductList));
             }
-            return View();
+            return View(extProduct);
         }
 
         public ActionResult DeleteExtProduct(ExtProductModel extProduct)
         {
             sessionManager.DeleteExtProduct(extProduct, HttpContext);
-            return RedirectToAction("ExtProductList");
+            return RedirectToAction(nameof(ExtProductList));
         }
     }
 }

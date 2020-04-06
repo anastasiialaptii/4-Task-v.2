@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Data.Services.Providers;
 
 namespace Task4v2.Models
 {
@@ -6,6 +7,7 @@ namespace Task4v2.Models
     {
         [Required, Key]
         public int Id { get; set; }
+
         [Required(ErrorMessage = "This field is required")]
         public string Name { get; set; }
 
