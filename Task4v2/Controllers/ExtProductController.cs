@@ -26,7 +26,12 @@ namespace Task4v2.Controllers
 
         public ActionResult ExtProductList()
         {
-            return View(extProductSession.GetOrCreateExtProductList(HttpContext));
+            var products = extProductSession.GetOrCreateExtProductList(HttpContext);
+            if (products.Count == 0)
+            {
+                return View("EmptyList");
+            }
+            return View(products);
         }
 
         public ActionResult DetailsExtProduct(int id)
