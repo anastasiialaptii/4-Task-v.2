@@ -34,3 +34,7 @@ textarea {
 .product-list-item{
     flex-shrink:1;
 }
+table {
+    border-spacing: 0 10px;
+    border: 2px;
+}

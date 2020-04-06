@@ -6,28 +6,35 @@
 
 <h2>ExtProduct List</h2>
 
-@foreach (var item in Model)
-{
-    <div class="product-list">
-        <div class="product-list-item">
-            <h4>@item.Name</h4>
-        </div>
-        <div class="product-list-item">
-            @Html.ActionLink("Delete", "DeleteExtProduct",
-              new { id = item.Id },
-              new
-              {
-                  onclick = "return confirm('Are you sure you want to delete this user?');",
-                  @class = "delete-button"
-              });
-        </div>
-        <div class="productlist-item">
-            @Html.ActionLink("Edit", "EditExtProduct",
-               new { id = item.Id });
-        </div>
-        <div class="product-list-item">
-            @Html.ActionLink("Details", "DetailsExtProduct",
-               new { id = item.Id });
-        </div>
-    </div>
-}
+<table class="table">
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Details</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteExtProduct",
+                        new { id = item.Id },
+                        new
+                        {
+                            onclick = "return confirm('Are you sure you want to delete this user?');",
+                            @class = "delete-button"
+                        })
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditExtProduct",
+             new { id = item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Details", "DetailsExtProduct",
+                           new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
