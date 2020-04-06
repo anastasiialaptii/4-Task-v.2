@@ -9,10 +9,10 @@
 @foreach (var item in Model)
 {
     <div class="product-list">
-        <div class="product=list-item">
+        <div class="product-list-item">
             <h4>@item.Name</h4>
         </div>
-        <div class="product=list-item">
+        <div class="product-list-item">
             @Html.ActionLink("Delete", "DeleteExtProduct",
               new { id = item.Id },
               new
@@ -21,11 +21,11 @@
                   @class = "delete-button"
               });
         </div>
-        <div class="product=list-item">
+        <div class="productlist-item">
             @Html.ActionLink("Edit", "EditExtProduct",
                new { id = item.Id });
         </div>
-        <div class="product=list-item">
+        <div class="product-list-item">
             @Html.ActionLink("Details", "DetailsExtProduct",
                new { id = item.Id });
         </div>

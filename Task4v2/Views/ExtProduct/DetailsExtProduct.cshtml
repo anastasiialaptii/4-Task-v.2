@@ -4,36 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details </h2>
-
 <div>
-    <h4>ExtProduct</h4>
+    <h4>ExtProduct info:</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MassUnits)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MassUnits)
-        </dd>
-    </dl>
+    <p>@Model.Name - @Model.Quantity @Model.MassUnits</p>
 </div>
 <p>
     @Html.ActionLink("Edit", "EditExtProduct", new { id = Model.Id }) |
